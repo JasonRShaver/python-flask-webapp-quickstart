@@ -19,11 +19,9 @@ jobs:
       - name: Build and deploy Container App
         uses: azure/container-apps-deploy-action@v0
         with:
-          acrName: cacbd6e84a6cacr
-          acrUsername: ${{ secrets.REGISTRY_USERNAME }}
-          acrPassword: ${{ secrets.REGISTRY_PASSWORD }}
+          acrName: ca26327fca9eacr
           azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resourceGroup: jrs-hw1   
-          containerAppName: jrs-hw-app
+          resourceGroup: jrs-hw4   
+          containerAppName: jrs-hw4-aca1
           appSourcePath: ${{ github.workspace }}                  
-          imageToBuild: cacbd6e84a6cacr.azurecr.io/jrs-hw3-aca1:${{ github.sha }}
+          imageToBuild: cacbd6e84a6cacr.azurecr.io/jrs-hw4-aca1:${{ github.sha }}
