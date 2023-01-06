@@ -1,0 +1,29 @@
+name: Build and Deploy with Oryx++ GHA
+
+on:
+  workflow_dispatch:   
+  push:
+    branches: 
+      [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          
+      - name: Build and deploy Container App
+        uses: azure/container-apps-deploy-action@v0
+        with:
+          acrName: cacbd6e84a6cacr
+          acrUsername: ${{ secrets.REGISTRY_USERNAME }}
+          acrPassword: ${{ secrets.REGISTRY_PASSWORD }}
+          azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+          resourceGroup: jrs-hw1   
+          containerAppName: jrs-hw-app
+          appSourcePath: ${{ github.workspace }}                  
+          imageToBuild: cacbd6e84a6cacr.azurecr.io/jrs-hw3-aca1:${{ github.sha }}
